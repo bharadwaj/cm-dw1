@@ -43,6 +43,8 @@ Selected Json:
 <b> id: </b>{{selectedJson.id}}
 <br>
 <b> jkl: </b>{{selectedJson.jkl}}
+<br>
+<b> def: </b>{{selectedJson.def}}
 </div>
   `,
 })

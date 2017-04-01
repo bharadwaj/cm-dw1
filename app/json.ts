@@ -1,3 +1,5 @@
+//Define a class of JSON Object to use for individual components purpose.
+
 export class DataJson {
   constructor(
     public id: number,

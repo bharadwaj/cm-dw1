@@ -4,7 +4,8 @@ import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { DataJson }        from './json';
 
-//Askeleton HTTP implementations to process general CRUD requests from an API.
+//A Skeleton HTTP implementations to process general CRUD requests from an API.
+//Based on the Angular2 tutorial.
 
 
 @Injectable()

@@ -53,6 +53,7 @@ export class AppComponent  {
 
 
   constructor() {
+    //Initialize data_json with HTTP GET request or the JSON Service method.
     this.data_json = [
     new DataJson(1, true, "", "M,NO,PQ,M,ST"),
     new DataJson(2, false, "", "M,NO,PQ,A,ST")

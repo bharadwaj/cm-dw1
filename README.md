@@ -38,5 +38,4 @@ $ npm start
 
 ### Todos
 
- - Implement Filters if needed for jkl json type.
- - Test with actual json data over Rest API.
+- Integrate with CLI

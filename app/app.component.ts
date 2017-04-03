@@ -1,74 +1,64 @@
-import { Component } from '@angular/core';
-import { DataJson }        from './json';
+import {Component} from '@angular/core';
+import {DataJson}        from './json';
 
 //import { AppService } from './app.service';
 
 @Component({
-  selector: 'my-app',
-  template: `<h1> Table with the data:</h1> 
-  <table class="pure-table pure-table-horizontal">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Code 1</th>
-            <th>Code 2</th>
-            <th>Code 3</th>
-            <th>Code 4</th>
-            <th>Code 5</th>
-            <th></th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <tr *ngFor="let json of data_json">
-            <td>{{json.id}}</td>
-            <td><input [(ngModel)]="json.ghi" placeholder="def" /> </td>
-            <td> <input [(ngModel)]="json.jkl" placeholder="def" /> </td> 
-            <td></td>
-            <td></td>
-            <td><input type="checkbox" [(ngModel)]="json.def"/></td> 
-            <td> <button (click)="update(json)">Save</button> </td>         
-        </tr>
-    </tbody>
-</table>
-
-<td> <button (click)="newDataJson()">New Entry</button> </td> 
-<hr>
-<b>debug:</b>
-<br>
-
-<div *ngIf="selectedJson">
-Selected Json: 
-<br>
-<b> id: </b>{{selectedJson.id}}
-<br>
-<b> jkl: </b>{{selectedJson.jkl}}
-<br>
-<b> def: </b>{{selectedJson.def}}
-</div>
-  `,
+    selector: 'my-app',
+    templateUrl: './app.component.html',
 })
-export class AppComponent  { 
-    json: DataJson;
-    selectedJson: DataJson;
-    data_json: Array<DataJson>;
+export class AppComponent {
+
+    json:DataJson;
+    selectedJson:DataJson;
+    data_json:Array<DataJson>;
+
+    jkl_1:string;
+    jkl_2:string;
+    jkl_3:string;
+    jkl_4:string;
+    jkl_5:string;
+    to_update_jkl_str:string;
 
 
-  constructor() {
-    //Initialize data_json with HTTP GET request or the JSON Service method.
-    this.data_json = [
-    new DataJson(1, true, "", "M,NO,PQ,M,ST"),
-    new DataJson(2, false, "", "M,NO,PQ,A,ST")
-];
-  }
+    constructor() {
+        //Initialize data_json with HTTP GET request or the JSON Service method.
+        this.data_json = [
+            new DataJson(1, true, "", "M,NO,PQ,M,ST"),
+            new DataJson(2, false, "", "U,VW,XY,Z,AB")
+        ];
+    }
 
-  update(json: any): void {
-      //Send this JSON to http server.
-      this.selectedJson = json;
-      console.log(json);
-  }
+    update(json:any):void {
+        //Send this JSON to http server.
+        this.selectedJson = json;
 
-  newDataJson(): void {
-      this.data_json.push(new DataJson(0, false, "", ""));
-  }
+        //Capture jkl Individually and bind the values
+        // NgModel is null if no change so assign the previous value.
+        var partsOfStr = json.jkl.split(',');
+
+        if (this.jkl_1 == null) {
+            this.jkl_1 = partsOfStr [0];
+        }
+        if (this.jkl_2 == null) {
+            this.jkl_2 = partsOfStr [1];
+        }
+        if (this.jkl_3 == null) {
+            this.jkl_3 = partsOfStr [2];
+        }
+        if (this.jkl_4 == null) {
+            this.jkl_4 = partsOfStr [3];
+        }
+        if (this.jkl_5 == null) {
+            this.jkl_5 = partsOfStr [4];
+        }
+        var updatedString = String(this.jkl_1 + "," + this.jkl_2 + "," + this.jkl_3 + "," + this.jkl_4 + "," + this.jkl_5);
+
+        //assign this string to the json we'd like to pass to the server.
+        this.to_update_jkl_str = updatedString;
+    }
+
+    newDataJson():void {
+        this.data_json.push(new DataJson(0, false, "", ""));
+    }
 }

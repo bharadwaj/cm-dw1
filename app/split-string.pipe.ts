@@ -10,7 +10,7 @@ import {Pipe, PipeTransform} from '@angular/core';
  */
 @Pipe({name: 'splitStringIdx'})
 export class SplitStringIndexPipe implements PipeTransform {
-    transform(value:number, str:string):number {
+    transform(value:number, str:string):string {
         var partsOfStr = str.split(',');
         return partsOfStr[value];
     }
